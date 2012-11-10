@@ -1,21 +1,26 @@
-
+/**
+ *
+ * @author Alejandro Soto
+ * @description Basically adds some functionlity to validate simple fields
+ *
+ */
 function SimpleValidator(configuration) {
-	this.configuration = configuration;
-	this.initialize();
+    this.configuration = configuration;
+    this.initialize();
 }
 
 SimpleValidator.prototype = {
-	configuration: null,
-	
-	emailPattern: /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/i,
-	
-	INVALID_FIELD_FORMAT: ['<span class="info-validation-label error">', '{message}', '</span>'],
+    configuration: null,
+
+    emailPattern: /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/i,
+
+    INVALID_FIELD_FORMAT: ['<span class="info-validation-label error">', '{message}', '</span>'],
     INVALID_MESSAGE_INDEX: 1,
-	
-	initialize: function() {
-	
-	},
-	
+
+    initialize: function () {
+
+    },
+
     /**
      * Validates form fields, also display a message 
      * on each field to show which is incorrect
@@ -26,10 +31,10 @@ SimpleValidator.prototype = {
      * 
      * @return boolean  true if are valid and false if not
      */
-	areFieldsValid: function(formFields, fieldsContainer, additionalFieldsValidationFunction) {
+    areFieldsValid: function (formFields, fieldsContainer, additionalFieldsValidationFunction) {
         var valid = true;
         fieldsContainer.find('span.info-validation-label').remove(); // remove validation messages if it has
-       
+
         if (typeof additionalFieldsValidationFunction == 'function') {
             valid = additionalFieldsValidationFunction();
         }
@@ -48,7 +53,7 @@ SimpleValidator.prototype = {
         }
         return valid;
     },
-    
+
     /**
      * Validates if text is an email or not
      * 
@@ -58,9 +63,6 @@ SimpleValidator.prototype = {
     isValidEmail: function (text) {
         return (text.search(this.emailPattern) != -1);
     }
-	
+
 };
-
-
-
 
